@@ -1,0 +1,77 @@
+{
+  "info": {
+    "name": "Reto Microservicios - API Gateway y Orders",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "API Gateway",
+      "item": [
+        {
+          "name": "Health / Gateway",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "http://localhost:8080/actuator/health"
+          }
+        },
+        {
+          "name": "Orders /ping (via Gateway)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "http://localhost:8080/orders/ping"
+          }
+        },
+        {
+          "name": "Catalog /ping (via Gateway)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "http://localhost:8080/catalog/ping"
+          }
+        },
+        {
+          "name": "Auth /login (via Gateway)",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {"mode": "raw", "raw": "{\"email\":\"user@test.com\",\"password\":\"password\"}"},
+            "url": "http://localhost:8080/auth/login"
+          }
+        },
+        {
+          "name": "Crear Pedido (POST /orders)",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {"mode": "raw", "raw": "{\"userId\":1,\"items\":[{\"productId\":1,\"quantity\":2},{\"productId\":2,\"quantity\":1}]}"},
+            "url": "http://localhost:8080/orders"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Orders Service (directo)",
+      "item": [
+        {
+          "name": "Ping directo 8083",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "http://localhost:8083/ping"
+          }
+        },
+        {
+          "name": "Crear Pedido directo 8083",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {"mode": "raw", "raw": "{\"userId\":1,\"items\":[{\"productId\":1,\"quantity\":2}]}"},
+            "url": "http://localhost:8083/"
+          }
+        },
+      ]
+    }
+  ]
+}

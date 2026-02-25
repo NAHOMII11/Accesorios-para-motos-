@@ -1,0 +1,41 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      routes:
+        # Ruta a Auth (Auth Service) - HU2 Login JWT
+        - id: auth
+          uri: http://localhost:8081
+          predicates:
+            - Path=/auth/**
+          filters:
+            - StripPrefix=1
+        # Ruta a Catalog (Catalog Service) - HU3 Catálogo
+        - id: catalog
+          uri: http://localhost:8082
+          predicates:
+            - Path=/catalog/**
+          filters:
+            - StripPrefix=1
+        # Ruta a Orders (Orders Service) - DDS-28 / HU4 Crear Pedido
+        - id: orders
+          uri: http://localhost:8083
+          predicates:
+            - Path=/orders/**
+          filters:
+            - StripPrefix=1
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+
+# Logging para verificar enrutado
+logging:
+  level:
+    org.springframework.cloud.gateway: DEBUG

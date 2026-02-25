@@ -1,0 +1,37 @@
+# Sprint 1 - Entorno: Docker, PostgreSQL, RabbitMQ
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: reto-postgres
+    environment:
+      POSTGRES_USER: reto
+      POSTGRES_PASSWORD: reto123
+      POSTGRES_DB: ordersdb
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U reto -d ordersdb"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    container_name: reto-rabbitmq
+    environment:
+      RABBITMQ_DEFAULT_USER: reto
+      RABBITMQ_DEFAULT_PASS: reto
+    ports:
+      - "5673:5672"   # AMQP (5673 en el PC para no chocar con otro proceso en 5672)
+      - "15673:15672" # Management UI (http://localhost:15673)
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "check_running"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  postgres_data:
