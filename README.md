@@ -1,0 +1,1 @@
+buscar la carpeta 'target' y buscar el archivo ejecutable 'catalog-api-gateway-0.0.1-SNAPSHOT.jar', descargan el archivo y lo ejecutan en un cmd con este comando: java -jar catalog-api-gateway-0.0.1-SNAPSHOT.jar
