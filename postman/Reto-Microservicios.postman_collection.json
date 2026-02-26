@@ -39,15 +39,6 @@
             "body": {"mode": "raw", "raw": "{\"email\":\"user@test.com\",\"password\":\"password\"}"},
             "url": "http://localhost:8080/auth/login"
           }
-        },
-        {
-          "name": "Crear Pedido (POST /orders)",
-          "request": {
-            "method": "POST",
-            "header": [{"key": "Content-Type", "value": "application/json"}],
-            "body": {"mode": "raw", "raw": "{\"userId\":1,\"items\":[{\"productId\":1,\"quantity\":2},{\"productId\":2,\"quantity\":1}]}"},
-            "url": "http://localhost:8080/orders"
-          }
         }
       ]
     },
@@ -61,16 +52,7 @@
             "header": [],
             "url": "http://localhost:8083/ping"
           }
-        },
-        {
-          "name": "Crear Pedido directo 8083",
-          "request": {
-            "method": "POST",
-            "header": [{"key": "Content-Type", "value": "application/json"}],
-            "body": {"mode": "raw", "raw": "{\"userId\":1,\"items\":[{\"productId\":1,\"quantity\":2}]}"},
-            "url": "http://localhost:8083/"
-          }
-        },
+        }
       ]
     }
   ]
