@@ -3,7 +3,7 @@
 services:
   postgres:
     image: postgres:16-alpine
-    container_name: reto-postgres
+    container_name: orders-postgres
     environment:
       POSTGRES_USER: reto
       POSTGRES_PASSWORD: reto123
@@ -20,7 +20,7 @@ services:
 
   rabbitmq:
     image: rabbitmq:3-management-alpine
-    container_name: reto-rabbitmq
+    container_name: orders-rabbitmq
     environment:
       RABBITMQ_DEFAULT_USER: reto
       RABBITMQ_DEFAULT_PASS: reto

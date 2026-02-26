@@ -1,0 +1,10 @@
+### Orders API - Pruebas (desde Cursor/VS Code con REST Client o Thunder Client)
+### Si usas Postman, importa la colección y usa "Orders (directo)" → Ping directo 8083
+
+@base = http://localhost:8083
+
+### 1. Ping directo a Orders (puerto 8083)
+GET {{base}}/ping
+
+### 2. Health de Orders (si tienes actuator)
+GET {{base}}/actuator/health

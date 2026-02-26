@@ -1,22 +1,16 @@
-# Sprint 1 - API orders
-# Maven
+# Carpeta duplicada (el código de orders está en orders/)
+orders-api/
+
+# Build
 target/
-pom.xml.tag
 *.jar
 *.war
-*.ear
-!.mvn/wrapper/maven-wrapper.jar
 
 # IDE
+.vscode/
 .idea/
 *.iml
-.vscode/
-*.swp
-*.swo
 
 # OS
 .DS_Store
 Thumbs.db
-
-# Logs
-*.log
