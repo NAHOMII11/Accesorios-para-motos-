@@ -1,6 +1,6 @@
 {
   "info": {
-    "name": "Reto Microservicios - API Gateway y Orders",
+    "name": "Reto Microservicios - API Gateway y Orders (Sprint 1)",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "item": [
@@ -43,7 +43,7 @@
       ]
     },
     {
-      "name": "Orders Service (directo)",
+      "name": "Orders (directo)",
       "item": [
         {
           "name": "Ping directo 8083",

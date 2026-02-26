@@ -21,7 +21,7 @@ spring:
             - Path=/catalog/**
           filters:
             - StripPrefix=1
-        # Ruta a Orders (Orders Service) - DDS-28 / HU4 Crear Pedido
+        # Ruta a Orders (API orders) - Sprint 1
         - id: orders
           uri: http://localhost:8083
           predicates:
