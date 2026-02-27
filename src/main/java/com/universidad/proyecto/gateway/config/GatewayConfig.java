@@ -11,9 +11,9 @@ public class GatewayConfig {
     @Bean
     public GlobalFilter customGlobalFilter() {
         return (exchange, chain) -> {
-            System.out.println("📢 Petición recibida en el Gateway: " + exchange.getRequest().getPath());
+            System.out.println("Petición recibida en el Gateway: " + exchange.getRequest().getPath());
             return chain.filter(exchange).then(Mono.fromRunnable(() -> {
-                System.out.println("✅ Respuesta enviada desde el Gateway");
+                System.out.println("Respuesta enviada desde el Gateway");
             }));
         };
     }
