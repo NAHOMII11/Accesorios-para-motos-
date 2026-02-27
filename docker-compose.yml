@@ -7,13 +7,14 @@ services:
     environment:
       POSTGRES_USER: reto
       POSTGRES_PASSWORD: reto123
-      POSTGRES_DB: ordersdb
+      POSTGRES_INITDB_ARGS: "-c shared_buffers=256MB"
     ports:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
+      - ./init-databases.sql:/docker-entrypoint-initdb.d/init-databases.sql
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U reto -d ordersdb"]
+      test: ["CMD-SHELL", "pg_isready -U reto"]
       interval: 5s
       timeout: 5s
       retries: 5
