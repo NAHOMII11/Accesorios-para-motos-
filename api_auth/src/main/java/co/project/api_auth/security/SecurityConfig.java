@@ -22,15 +22,20 @@ public class SecurityConfig {
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
+        return new BCryptPasswordEncoder(); 
     }
+    public org.springframework.security.core.userdetails.UserDetailsService userDetailsService() {
+    return username -> {
+        throw new org.springframework.security.core.userdetails.UsernameNotFoundException("Use JWT");
+    };
+}
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/auth/login", "/auth/health").permitAll()
+                        .requestMatchers("/auth/login", "/auth/health", "/auth/register").permitAll() // se modifica para permitir el endpoint de registro
                         .requestMatchers("/auth/admin/**").hasRole("ADMIN")  // ← requiere ADMIN
                         .anyRequest().authenticated()
                 )

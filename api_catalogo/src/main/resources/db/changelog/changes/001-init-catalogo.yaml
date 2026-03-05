@@ -156,3 +156,50 @@ databaseChangeLog:
             referencedTableName: products
             referencedColumnNames: id
             constraintName: fk_movimientos_products
+
+        # 5. Insertar datos de prueba
+  - changeSet:
+      id: 005-insert-datos-prueba
+      author: api_catalogo
+      changes:
+        - insert:
+            tableName: categorias
+            columns:
+              - column:
+                  name: name
+                  value: "Cascos"  # se agrega una categoria de prueba
+              - column:
+                  name: description
+                  value: "Coscos gama media" # descripcion de la categoria de prueba
+
+        - insert:
+            tableName: products
+            columns:
+              - column:
+                  name: nombre
+                  value: "Casco MT" # se agrega un producto de prueba
+              - column:
+                  name: descripcion
+                  value: "Laptop de prueba"
+              - column:
+                  name: precio
+                  valueNumeric: 500000.00
+              - column:
+                  name: categoria_id
+                  valueNumeric: 1
+              - column:
+                  name: creado_en
+                  valueComputed: NOW()
+
+        - insert:
+            tableName: inventario
+            columns:
+              - column:
+                  name: product_id
+                  valueNumeric: 1
+              - column:
+                  name: stock_disponible
+                  valueNumeric: 50
+              - column:
+                  name: actualizado_en
+                  valueComputed: NOW()

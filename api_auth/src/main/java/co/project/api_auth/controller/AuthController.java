@@ -2,10 +2,12 @@ package co.project.api_auth.controller;
 
 import co.project.api_auth.dto.LoginRequest;
 import co.project.api_auth.dto.LoginResponse;
+import co.project.api_auth.dto.RegisterRequest;
 import co.project.api_auth.service.AuthService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 
 import java.util.Map;  // ← AGREGAR ESTA LÍNEA
 
@@ -50,4 +52,16 @@ public class AuthController {
         "data", "Solo admins pueden ver esto"
     ));
     }
+
+    @PostMapping("/register")
+public ResponseEntity<?> register(@RequestBody RegisterRequest request) {
+    try {
+        authService.register(request);
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(Map.of("message", "Usuario registrado exitosamente"));
+    } catch (RuntimeException e) {
+        return ResponseEntity.status(HttpStatus.CONFLICT)
+                .body(Map.of("error", e.getMessage()));
+    }
+}
 }   

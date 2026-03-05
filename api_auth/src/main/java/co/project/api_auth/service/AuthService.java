@@ -2,11 +2,13 @@ package co.project.api_auth.service;
 
 import co.project.api_auth.dto.LoginRequest;
 import co.project.api_auth.dto.LoginResponse;
+import co.project.api_auth.dto.RegisterRequest;
 import co.project.api_auth.entity.Usuario;
 import co.project.api_auth.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
 
 @Service
 public class AuthService {
@@ -47,4 +49,19 @@ public class AuthService {
                 usuario.getRoles()
         );
     }
+    public Usuario register(RegisterRequest request) {
+    // Verificar si el usuario ya existe
+    if (usuarioRepository.findByUsername(request.getUsername()).isPresent()) {
+        throw new RuntimeException("El usuario ya existe");
+    }
+
+    // Crear nuevo usuario
+    Usuario usuario = new Usuario();
+    usuario.setUsername(request.getUsername());
+    usuario.setPasswordHash(passwordEncoder.encode(request.getPassword()));
+    usuario.setRoles(request.getRoles() != null ? request.getRoles() : "CUSTOMER");
+    usuario.setActivo(true);
+
+    return usuarioRepository.save(usuario);
+}
 }
