@@ -1,0 +1,52 @@
+# ========== AGREGADO NAHOMI – datos iniciales estado y cliente de prueba ==========
+databaseChangeLog:
+  - changeSet:
+      id: 006-insert-estados-iniciales
+      author: nahomi
+      changes:
+        - insert:
+            tableName: estado
+            columns:
+              - column:
+                  name: nombre_estado
+                  value: CREADO
+              - column:
+                  name: descripcion
+                  value: Pedido creado
+        - insert:
+            tableName: estado
+            columns:
+              - column:
+                  name: nombre_estado
+                  value: CANCELADO
+              - column:
+                  name: descripcion
+                  value: Pedido cancelado
+        - insert:
+            tableName: estado
+            columns:
+              - column:
+                  name: nombre_estado
+                  value: COMPLETADO
+              - column:
+                  name: descripcion
+                  value: Pedido completado
+  - changeSet:
+      id: 007-insert-cliente-prueba
+      author: nahomi
+      changes:
+        - insert:
+            tableName: clientes
+            columns:
+              - column:
+                  name: nombre
+                  value: Cliente Prueba
+              - column:
+                  name: correo
+                  value: prueba@test.com
+              - column:
+                  name: telefono
+                  value: "123"
+              - column:
+                  name: direccion
+                  value: Calle 123
