@@ -1,0 +1,48 @@
+package co.project.api_pedidos.config;
+
+import org.springframework.amqp.core.*;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+public class RabbitMQConfig {
+
+    public static final String EXCHANGE = "pedidos.exchange";
+    public static final String QUEUE_PEDIDO_CREADO = "pedido.creado.queue";
+    public static final String ROUTING_KEY_PEDIDO_CREADO = "pedido.creado";
+    public static final String QUEUE_PEDIDO_CANCELADO = "pedido.cancelado.queue";       // ← NUEVO
+    public static final String ROUTING_KEY_PEDIDO_CANCELADO = "pedido.cancelado";
+
+    @Bean
+    public TopicExchange exchange() {
+        return new TopicExchange(EXCHANGE);
+    }
+
+    // ── Queue y Binding para pedido CREADO ──
+    @Bean
+    public Queue queuePedidoCreado() {
+        return new Queue(QUEUE_PEDIDO_CREADO, true); // durable
+    }
+
+    @Bean
+    public Binding bindingPedidoCreado() {
+        return BindingBuilder
+                .bind(queuePedidoCreado())
+                .to(exchange())
+                .with(ROUTING_KEY_PEDIDO_CREADO);
+    }
+
+
+    @Bean
+    public Queue queuePedidoCancelado() {
+        return new Queue(QUEUE_PEDIDO_CANCELADO, true); // durable
+    }
+
+    @Bean
+    public Binding bindingPedidoCancelado() {
+        return BindingBuilder
+                .bind(queuePedidoCancelado())
+                .to(exchange())
+                .with(ROUTING_KEY_PEDIDO_CANCELADO);
+    }
+}
